@@ -8,6 +8,7 @@
 #include <type_traits>
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 
 namespace Interpolation
 {

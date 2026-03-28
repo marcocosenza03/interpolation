@@ -17,8 +17,8 @@ struct StandardGrid {
 
    enum class STRATEGY : unsigned {
       NAIVE = 0,
-      FBF   = 1,
-      SBF   = 2,
+      FBF   = 1, //first barycentric formula
+      SBF   = 2, //second barycentric formula
    };
 
    /**
