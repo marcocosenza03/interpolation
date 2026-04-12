@@ -51,7 +51,7 @@ struct StandardGrid {
     * @param j The index of the weight to evaluate
     * @return  The value of the weight at the point
     */
-   double poli_weight(double t, size_t j) const;
+   double poly_weight(double t, size_t j) const;
 
    /**
     * @brief Polynomial weight at index j
@@ -64,7 +64,7 @@ struct StandardGrid {
     * This version is used when @interpolate is called, whereas previous
     * version is useful for other applications
     */
-   double poli_weight(double t, size_t j, double den) const;
+   double poly_weight(double t, size_t j, double den) const;
 
    /**
     * @brief Derivative of the polynomial weight at index j
@@ -75,7 +75,7 @@ struct StandardGrid {
     * /
     * \partial t\f$)
     */
-   double poli_weight_der(double t, size_t j) const;
+   double poly_weight_der(double t, size_t j) const;
 
    /**
     * @brief Derivative of the polynomial weight at index j
@@ -87,7 +87,7 @@ struct StandardGrid {
     * /
     * \partial t\f$)
     */
-   double poli_weight_der(double t, size_t j, double den) const;
+   double poly_weight_der(double t, size_t j, double den) const;
 
    /**
     * @brief Applies the derivative matrix to the input in-place

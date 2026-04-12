@@ -38,7 +38,7 @@ StandardGrid::StandardGrid(size_t p)
         }
     }
 }
-/*double StandardGrid::poli_weight(double t, size_t j) const 
+/*double StandardGrid::poly_weight(double t, size_t j) const 
 {
     double den = 0;
     for(size_t i = 0; i <= _p; i++){
@@ -46,18 +46,18 @@ StandardGrid::StandardGrid(size_t p)
     };
     return _betaj[j] / den;
 };
-double StandardGrid::poli_weight(double t, size_t j, double den) const 
+double StandardGrid::poly_weight(double t, size_t j, double den) const 
 {
     return _betaj[j] / den;
 };*/
-double StandardGrid::poli_weight(double t, size_t j, double den) const 
+double StandardGrid::poly_weight(double t, size_t j, double den) const 
 {
     if(std::abs(t - _tj[j]) < 1.0e-15) return 1.; 
     double res = 0.;
     res = _betaj[j] / (t - _tj[j]) / den;
     return res;
 }
-double StandardGrid::poli_weight(double t, size_t j) const 
+double StandardGrid::poly_weight(double t, size_t j) const 
 {
     if(std::abs(t - _tj[j]) < 1.0e-15) return 1.;
     double den = 0.;
@@ -70,21 +70,21 @@ double StandardGrid::poli_weight(double t, size_t j) const
     res = _betaj[j] / (t - _tj[j]) / den;
     return res;
 }
-double StandardGrid::poli_weight_der(double t, size_t j) const
+double StandardGrid::poly_weight_der(double t, size_t j) const
 {
     double res = 0.;
     for(size_t i = 0; i <= _p; i++){
         if(std::abs(t - _tj[i]) < 1.0e-15) return _Dij[j][i];
-        res += _Dij[j][i] * poli_weight(t, i);
+        res += _Dij[j][i] * poly_weight(t, i);
     }
     return res;
 }
-double StandardGrid::poli_weight_der(double t, size_t j, double den) const
+double StandardGrid::poly_weight_der(double t, size_t j, double den) const
 {
     double res = 0.;
     for(size_t i = 0; i <= _p; i++){
         if(std::abs(t - _tj[i]) < 1.0e-15) return _Dij[j][i];
-        res += _Dij[j][i] * poli_weight(t, i, den);
+        res += _Dij[j][i] * poly_weight(t, i, den);
     }
     return res;
 }
@@ -113,7 +113,7 @@ double StandardGrid::interpolate(double t, const vector_d &fj, size_t start, siz
     }
     double res = 0.;
     for(size_t i=0; i <= _p; i++){
-        res += poli_weight(t, i, den) * fj[i + start];
+        res += poly_weight(t, i, den) * fj[i + start];
     }
     return res; 
 }
@@ -141,7 +141,7 @@ double StandardGrid::interpolate_der(double t, const vector_d &fj, size_t start,
 
     double res = 0.;
     for(size_t i = 0; i <= _p; i++){
-        res += poli_weight_der(t, i , den) * fj[i + start];
+        res += poly_weight_der(t, i , den) * fj[i + start];
     }
     return res;
 }
@@ -172,7 +172,7 @@ double StandardGrid::interpolate_der(double t, const vector_d &fj, size_t start,
     }
     double res = 0.;
     for(size_t i=0; i <= _p; i++){
-        res += poli_weight(t, i, den) * fjtilde[i];
+        res += poly_weight(t, i, den) * fjtilde[i];
     }
     return res; 
 }*/

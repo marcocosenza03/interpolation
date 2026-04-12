@@ -52,8 +52,7 @@ struct StandardGrid {
     * @param str      The interpolation strategy to be used (default: first barycentric formula)
     * @return         The interpolated value
     */
-   double interpolate(double t, const vector_d &fj, size_t start, size_t end,
-                      STRATEGY str = STRATEGY::FBF) const;
+   double interpolate(double t, const vector_d &fj, size_t start, size_t end, STRATEGY str = STRATEGY::FBF) const;
    /**
     * @brief Interpolate the derivative of a view of a vector on the grid
     *
@@ -64,8 +63,7 @@ struct StandardGrid {
     * @param str      The interpolation strategy to be used (default: first barycentric formula)
     * @return         The interpolated value
     */
-   double interpolate_der(double t, const vector_d &fj, size_t start, size_t end,
-                          STRATEGY str = STRATEGY::FBF) const;
+   double interpolate_der(double t, const vector_d &fj, size_t start, size_t end, STRATEGY str = STRATEGY::FBF) const;
 
    /**
     * @brief Interpolate the derivative of a view of a vector on the grid
@@ -80,8 +78,7 @@ struct StandardGrid {
     * @note This version takes the input vector, applies the derivative matrix,
     * and then calls the standard interpolation.
     */
-   double interpolate_der_v2(double t, const vector_d &fj, size_t start, size_t end,
-                             STRATEGY str = STRATEGY::FBF) const;
+   double interpolate_der_v2(double t, const vector_d &fj, size_t start, size_t end, STRATEGY str = STRATEGY::FBF) const;
 
    /**
     * @brief Polynomial weight at index j, naive expression
@@ -90,7 +87,7 @@ struct StandardGrid {
     * @param j The index of the weight to evaluate
     * @return  The value of the weight at the point
     */
-   double poli_weight(double t, size_t j) const;
+   double poly_weight(double t, size_t j) const;
 
    /**
     * @brief Polynomial weight at index j for first barycentric formula
@@ -99,7 +96,7 @@ struct StandardGrid {
     * @param j The index of the weight to evaluate
     * @return  The value of the weight at the point
     */
-   double poli_weight_fbf(double t, size_t j) const;
+   double poly_weight_fbf(double t, size_t j) const;
 
    /**
     * @brief Polynomial weight at index j for first barycentric formula
@@ -109,7 +106,7 @@ struct StandardGrid {
     * @param monic The value of the monic Lagrange polynomial \f$ l(x) \f$
     * @return  The value of the weight at the point
     */
-   double poli_weight_fbf(double t, size_t j, double monic) const;
+   double poly_weight_fbf(double t, size_t j, double monic) const;
 
    /**
     * @brief Polynomial weight at index j for first barycentric formula
@@ -118,7 +115,7 @@ struct StandardGrid {
     * @param j The index of the weight to evaluate
     * @return  The value of the weight at the point
     */
-   double poli_weight_sbf(double t, size_t j) const;
+   double poly_weight_sbf(double t, size_t j) const;
 
    /**
     * @brief Polynomial weight at index j for first barycentric formula
@@ -128,7 +125,7 @@ struct StandardGrid {
     * @param monic The denominator for the second barycentric formula
     * @return  The value of the weight at the point
     */
-   double poli_weight_sbf(double t, size_t j, double den) const;
+   double poly_weight_sbf(double t, size_t j, double den) const;
 
    /**
     * @brief Derivative of the polynomial weight at index j
@@ -139,15 +136,15 @@ struct StandardGrid {
     * /
     * \partial t\f$)
     */
-   double poli_weight_der(double t, size_t j) const;
+   double poly_weight_der(double t, size_t j) const;
    /// Same, for first barycentric formula
-   double poli_weight_fbf_der(double t, size_t j) const;
+   double poly_weight_fbf_der(double t, size_t j) const;
    /// Same, for first barycentric formula with precomputed monic poly
-   double poli_weight_fbf_der(double t, size_t j, double monic) const;
+   double poly_weight_fbf_der(double t, size_t j, double monic) const;
    /// Same, for second barycentric formula
-   double poli_weight_sbf_der(double t, size_t j) const;
+   double poly_weight_sbf_der(double t, size_t j) const;
    /// Same, for second barycentric formula with precomputed denominator
-   double poli_weight_sbf_der(double t, size_t j, double den) const;
+   double poly_weight_sbf_der(double t, size_t j, double den) const;
 
    /**
     * @brief Applies the derivative matrix to the input in-place
