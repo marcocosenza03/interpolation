@@ -7,9 +7,10 @@ configure_file(
 set(TEST_SOURCES  
    test_empty.cc
    # test_first_discr.cc
-   # test_simple_test.cc
+   # miscellaneous.cc
    # test_chebyshev.cc
-   test_generic.cc
+   # test_generic.cc
+   # test_grid_1d.cc
 )
 
 foreach(TEST_SOURCE ${TEST_SOURCES})

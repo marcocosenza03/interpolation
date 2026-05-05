@@ -1,8 +1,7 @@
-
 #pragma once
 
 #include <concepts>
-#include "Interpolation/default.hh"
+#include "Interpolation/default.hh" 
 
 namespace Interpolation
 {
@@ -173,9 +172,9 @@ concept InterpolateCompatible2D = InterpolateCompatible2DIndex<ReturnType, Inner
  */
 template <class K>
 concept isPIM = requires(double x) {
-   { K::tis(x) } -> std::same_as<double>;
+   { K::tis(x) } -> std::same_as<double>; // to interpolation space
    { K::tis_d(x) } -> std::same_as<double>;
-   { K::tps(x) } -> std::same_as<double>;
+   { K::tps(x) } -> std::same_as<double>; // to physical space
    { K::tps_d(x) } -> std::same_as<double>;
 };
 

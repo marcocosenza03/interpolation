@@ -20,6 +20,7 @@ using i32 = int32_t;
 using u32 = uint32_t;
 
 using vector_d = std::vector<double>;
+
 struct matrix_d {
 public:
    matrix_d(size_t n, size_t m, double c = 0.) : _data(n * m, c), _rows(n), _cols(m)

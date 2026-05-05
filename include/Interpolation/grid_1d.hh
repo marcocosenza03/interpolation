@@ -49,7 +49,7 @@ public:
    /// Polynomial degree for each interval
    std::vector<size_t> grid_sizes;
 
-   /// Map to interpolation space
+   /// Map to interpolation space (C'è un motivo per cui non c'è _ davanti ai nomi?)
    std::function<double(double)> to_inter_space;
    /// Derivative of map to interpolation space
    std::function<double(double)> to_inter_space_der;
