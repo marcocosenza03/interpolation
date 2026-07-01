@@ -119,5 +119,12 @@ int main()
     }
     std::cout << "\n";*/
 
+    std::cout << "\n";
+
+    Interpolation::details::powlaw_0_maps<M_PI, 0.1> fnc;
+    printf("%f, %f, %f, %f \n", fnc.tis(M_E), fnc.tis_d(M_E), fnc.tps(-M_LN2), fnc.tps_d(-M_SQRT1_2)); 
+
+
+    
     return 0;
 }

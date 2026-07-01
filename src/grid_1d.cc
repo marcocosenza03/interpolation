@@ -1,4 +1,5 @@
 #include "Interpolation/grid_1d.hh"
+#include "Interpolation/gauss_kronrod.hh"
 #include <set>
 
 
@@ -176,6 +177,26 @@ namespace Interpolation
         _coord.resize(N - 1, 0);
         for(size_t i = 0; i < d_info.intervals_phys.size(); i++){}*/
 
+
+        _integral_weights.resize(c_size_li, 0.);
+
+        size_t i_w;
+
+        std::function<double(double)> full_integrand = [&](double u) -> double {
+            return d_info.to_phys_space_der(u) * _weights[i_w](u, get_std_grid(i_w));
+        };
+
+        for(size_t j = 0; j < size; j++) {
+            size_t j_c = _from_iw_to_ic[j];
+
+            i_w = j;
+
+            auto [vmin, vmax] = get_support_weight_aj(j);
+
+            if(std::abs(vmax - vmin) < 1.0e-15) continue;
+            _integral_weights[j_c] += GaussKronrod<GK_21>::integrate(full_integrand, vmin, vmax, 1.0e-10, 1.0e-10);
+        }
+
     }
 
     double Grid1D::get_der_matrix(size_t a, size_t j, size_t b, size_t k) const
@@ -183,5 +204,6 @@ namespace Interpolation
         if(a != b) return 0; 
         return _stored_grids.at(_d_info.grid_sizes[a])._Dij[j][k];
     }
+
 
 } // namespace Interpolation

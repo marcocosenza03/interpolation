@@ -6,7 +6,7 @@
 namespace Interpolation
 {
 
-using index_t = i32;
+using index_t = i32; // Sigend integer
 
 namespace cpt
 {
