@@ -67,8 +67,10 @@ int main()
         x_e = step_e(t0 + i * dt, dt, x_e);
     }
 
+    printf("Runge-Kutta:\n");
     printf("Posizione: %f\nVelocità: %f\n", x_rg[0], x_rg[1]);
     printf("\n");
+    printf("Euler:\n");
     printf("Posizione: %f\nVelocità: %f\n", x_e[0], x_e[1]);
 
 

@@ -33,7 +33,6 @@ StandardGrid::StandardGrid(size_t p)
     for(size_t i=0; i <= p; i++){
         for(size_t j=0; j <= p; j++){
             if(j==i) continue;
-            
             _Dij[i][j] = - (_betaj[i] / _betaj[j]) / (_tj[i] - _tj[j]);
         }
     }

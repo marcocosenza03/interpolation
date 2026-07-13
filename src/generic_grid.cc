@@ -209,6 +209,9 @@ namespace Generic
     }
     }*/
 
+
+
+
     double StandardGrid::interpolate(double t, const vector_d &fj, size_t start, size_t end, STRATEGY str) const
     {
         if(t < -1 || t > 1 || (end - start) != _p){
@@ -229,7 +232,7 @@ namespace Generic
         }
         case STRATEGY::FBF: {
             double monic = 1.;
-            for(size_t i = 0; i <= _p; i++){
+            for(size_t i = 0; i <= _p; i++) {
                 monic *= (t - _tj[i]);
             }
             double sum = 0.;
@@ -252,19 +255,21 @@ namespace Generic
             }
             return sum;
         }
+        default:
+            throw std::logic_error("[StandardGrid::interpolate]: STRATEGY non valida");
         }
     }
 
     double StandardGrid::interpolate_der(double t, const vector_d &fj, size_t start, size_t end, STRATEGY str) const
     {
         if (t < -1 || t > 1 || (end - start) != _p) {
-            throw std::domain_error("[StandardGrid::interpolate]: t=" + std::to_string(t)
+            throw std::domain_error("[StandardGrid::interpolate_der]: t=" + std::to_string(t)
                                     + " \\notin [-1, +1] OR view "
                                         "into fj of wrong size: ["
                                     + std::to_string(start) + ", " + std::to_string(end) + "]");
         }
 
-        switch(str){
+        switch(str) {
         case STRATEGY::NAIVE: {
             double sum = 0;
             for (size_t i = start, j = 0; i <= end; i++, j++) {
@@ -291,7 +296,7 @@ namespace Generic
                 if (fabs(t - _tj[l]) < 1.0e-15) {
                     double sum = 0;
                     for (size_t i = start, j = 0; i <= end; i++, j++) {
-                    sum += fj[i] * _Dij[i][l];
+                    sum += fj[i] * _Dij[j][l];
                     }
                     return sum;
                 }
@@ -304,6 +309,8 @@ namespace Generic
             }
             return sum;
         }
+        default:
+            throw std::logic_error("[StandardGrid::interpolate_der]: STRATEGY non valida");
         }
     }
 

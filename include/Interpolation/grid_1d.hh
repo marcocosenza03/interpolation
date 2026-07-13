@@ -36,11 +36,9 @@ public:
     */
    SingleDiscretizationInfo(std::vector<double> inter, std::vector<size_t> g_size,
                             std::function<double(double)> to_i_space = details::identity_maps::tis,
-                            std::function<double(double)> to_i_space_der
-                            = details::identity_maps::tis_d,
+                            std::function<double(double)> to_i_space_der = details::identity_maps::tis_d,
                             std::function<double(double)> to_p_space = details::identity_maps::tps,
-                            std::function<double(double)> to_p_space_der
-                            = details::identity_maps::tps_d);
+                            std::function<double(double)> to_p_space_der = details::identity_maps::tps_d);
 
    /// Intervals in interpolation space
    std::vector<std::pair<double, double>> intervals;
@@ -49,7 +47,7 @@ public:
    /// Polynomial degree for each interval
    std::vector<size_t> grid_sizes;
 
-   /// Map to interpolation space (C'è un motivo per cui non c'è _ davanti ai nomi?)
+   /// Map to interpolation space
    std::function<double(double)> to_inter_space;
    /// Derivative of map to interpolation space
    std::function<double(double)> to_inter_space_der;

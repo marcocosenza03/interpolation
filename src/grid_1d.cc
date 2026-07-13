@@ -23,10 +23,10 @@ double from_ab_to_m1p1_der(double a, double b)
 namespace Interpolation 
 {
     SingleDiscretizationInfo::SingleDiscretizationInfo(std::vector<double> inter, std::vector<size_t> g_size,
-                            std::function<double(double)> to_i_space,
-                            std::function<double(double)> to_i_space_der,
-                            std::function<double(double)> to_p_space,
-                            std::function<double(double)> to_p_space_der) :
+                                                       std::function<double(double)> to_i_space,
+                                                       std::function<double(double)> to_i_space_der,
+                                                       std::function<double(double)> to_p_space,
+                                                       std::function<double(double)> to_p_space_der) :
         intervals(inter.size() - 1, {0, 0}), intervals_phys(inter.size() - 1, {0, 0}),
         grid_sizes(g_size), to_inter_space(to_i_space), to_inter_space_der(to_i_space_der),
         to_phys_space(to_p_space), to_phys_space_der(to_p_space_der)
@@ -52,8 +52,6 @@ namespace Interpolation
         std::sort(grid_sizes_unique.begin(), grid_sizes_unique.end());
         grid_sizes_unique.erase(std::unique(grid_sizes_unique.begin(), grid_sizes_unique.end()), grid_sizes_unique.end());
         for(size_t i = 0; i < grid_sizes_unique.size(); i++){
-            // Chebyshev::StandardGrid chebyshevpoints(grid_sizes_unique[i]);
-            // _stored_grids.insert({grid_sizes_unique[i], chebyshevpoints});
             _stored_grids.insert({grid_sizes_unique[i], Chebyshev::StandardGrid(grid_sizes_unique[i])});
         }
 
@@ -158,13 +156,6 @@ namespace Interpolation
         for (size_t i = 0; i < _from_iw_to_ic.size(); i++) {
             _from_ic_to_iw[_from_iw_to_ic[i]].push_back(i);
         }
-
-
-
-
-
-
-
 
         
         /*size_t N = 1; // Number of unique points

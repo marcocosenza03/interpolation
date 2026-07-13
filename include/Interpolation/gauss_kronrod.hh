@@ -90,6 +90,10 @@ struct GaussKronrod {
     static Eval gauss_kronrod_simplified(const std::function<double(double)> &fnc, double a, double b);
 };
 
+
+
+
+
 template <typename Rule>
 requires cpt::IsGKRule<Rule, Rule::size>
 Interpolation::GaussKronrod<Rule>::Eval GaussKronrod<Rule>::gauss_kronrod_simplified(const std::function<double(double)> &fnc, double a, double b) 
@@ -133,7 +137,17 @@ double Interpolation::GaussKronrod<Rule>::integrate(const std::function<double(d
     result += seed.res;
     error += seed.err;
 
+    size_t max_iterations = 300000;
+    size_t iterations = 0;
+
     while(!pq.empty()) {
+        iterations++;
+        if(iterations > max_iterations) {
+            std::cout << "Reached max number of iterations" << std::endl;
+            break;
+            // throw "Reached max number of iterations";
+        }
+
         Item current = pq.top();
         pq.pop();
 
@@ -173,12 +187,21 @@ double Interpolation::GaussKronrod<Rule>::integrate_rec(const std::function<doub
     double result = 0;
     result += seed.res;
 
+    size_t max_iterations = 300000;
+    size_t iterations = 0;
+
     while(stack.size() != 0)
     {
+        iterations++;
+        if(iterations > max_iterations) {
+            std::cout << "Reached max number of iterations" << std::endl;
+            break;
+            // throw "Reached max number of iterations";
+        }
+    
+
         Item current = stack.back();
         stack.pop_back();
-
-        // result -= current.e.high;
 
         double c = (current.high - current.low) / 2;
         if(subinterval_too_small(current.low, c, current.high)) continue;
